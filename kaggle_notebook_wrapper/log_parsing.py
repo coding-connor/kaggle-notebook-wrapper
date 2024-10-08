@@ -22,10 +22,9 @@ def extract_log_entries(log_content):
             if match:
                 cell_id = int(match.group(1))
                 log_data.append((cell_id, log_message))
-                print(f"Extracted log for cell_id {cell_id}: {log_message}")
     except json.JSONDecodeError as e:
         print(f"Failed to decode JSON: {e}")
-    print(f"Extracted {len(log_data)} log entries with cell_id")
+    print(f"Extracted {len(log_data)} log entries with cell_id metadata.")
     return log_data
 
 def append_logs_to_cells(notebook_path, log_data):
@@ -46,9 +45,7 @@ def append_logs_to_cells(notebook_path, log_data):
                         'name': 'stdout',
                         'text': '\n'.join(cell_logs) + '\n'
                     })
-                    cell['outputs'].append(output_node)
-                    print(f"Appended logs to cell_id {cell_id}")
-        
+                    cell['outputs'].append(output_node)        
         
         with builtins.open(notebook_path, 'w') as f:
             nbformat.write(nb, f)

@@ -22,18 +22,25 @@ def push_notebook(path=None):
 def pull_results(kernel_id):
     """Pull the results of the notebook execution from Kaggle."""
     log_file_path = None
+    start_time = time.time()
     while True:
         try:
             result = subprocess.run(['kaggle', 'kernels', 'status', kernel_id], check=True, capture_output=True, text=True)
             output = result.stdout
-            print(output)
+            elapsed_time = time.time() - start_time
+            print(output + "(elapsed time: {:.2f} seconds)".format(elapsed_time))
             if "complete" in output.lower():
                 break
+            hint = True
+            if elapsed_time > 60:
+                while hint:
+                    print("Hint: If this is the first time you are running this notebook and you are using a large Kaggle dataset, the setup may take a while. Please be patient.")
+                    hint = False
         except subprocess.CalledProcessError as e:
             print(f"An error occurred while checking the status: {e}")
             print(f"Error output: {e.stderr}")
             raise
-        time.sleep(2)  
+        time.sleep(2)
 
     # Download the log file
     try:

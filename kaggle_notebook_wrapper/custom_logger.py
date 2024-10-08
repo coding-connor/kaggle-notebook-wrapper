@@ -50,6 +50,10 @@ class CustomContext:
         return iter([])
 
 def custom_logger(name, notebook_path="__notebook__.ipynb"):
+    if notebook_path == "__notebook__.ipynb" and not os.path.isfile(notebook_path):
+        print("Notebook path not found. This likely means you are not running in a Kaggle notebook, or that you are using an interactive session.")
+        print("Custom logging disabled. Default logging will be used.")
+        return logging.getLogger(name)
     logger = logging.getLogger(name)
     syslog = logging.StreamHandler()
     formatter = logging.Formatter('%(asctime)s %(message)s')
