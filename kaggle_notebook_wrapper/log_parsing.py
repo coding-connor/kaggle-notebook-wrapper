@@ -4,7 +4,6 @@ import nbformat
 import shutil
 import builtins
 from nbformat.notebooknode import NotebookNode
-import difflib
 
 def read_log_file(log_file_path):
     print(f"Reading log file: {log_file_path}")
@@ -30,34 +29,29 @@ def extract_log_entries(log_content):
     return log_data
 
 def append_logs_to_cells(notebook_path, log_data):
+    print(f"Appending logs to notebook: {notebook_path}")
     try:
         with builtins.open(notebook_path, 'r') as f:
             nb = nbformat.read(f, as_version=4)
-
-        # Append logs to the first cell
-        if nb.cells:
-            nb.cells[0].source += '\n' + '\n'.join(log_data)
-        else:
-            nb.cells.append(nbformat.v4.new_code_cell('\n'.join(log_data)))
-
+        
+        for cell in nb.cells:
+            if cell.cell_type == 'code' and 'cell_id' in cell.metadata:
+                cell_id = cell.metadata['cell_id']
+                cell_logs = [log for cid, log in log_data if cid == cell_id]
+                if cell_logs:
+                    if 'outputs' not in cell:
+                        cell['outputs'] = []
+                    output_node = NotebookNode({
+                        'output_type': 'stream',
+                        'name': 'stdout',
+                        'text': '\n'.join(cell_logs) + '\n'
+                    })
+                    cell['outputs'].append(output_node)
+                    print(f"Appended logs to cell_id {cell_id}")
+        
+        
         with builtins.open(notebook_path, 'w') as f:
             nbformat.write(nb, f)
-
-        # Debugging: Verify the notebook content after writing
-        with builtins.open(notebook_path, 'r') as f:
-            nb_after = nbformat.read(f, as_version=4)
-
-        # Check if nb and nb_after are the same
-        if nb == nb_after:
-            print("Notebook content is the same before and after writing.")
-        else:
-            print("Notebook content differs before and after writing.")
-            # Print differences
-            nb_str = json.dumps(nb, indent=2)
-            nb_after_str = json.dumps(nb_after, indent=2)
-            diff = difflib.unified_diff(nb_str.splitlines(), nb_after_str.splitlines(), lineterm='')
-            for line in diff:
-                print(line)
 
         print("Finished appending logs to notebook")
    

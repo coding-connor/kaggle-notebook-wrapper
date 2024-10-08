@@ -68,9 +68,9 @@
     }
    ],
    "source": [
-    "from kaggle_notebook_wrapper.custom_logger import setup_custom_logger\n",
+    "from kaggle_notebook_wrapper import custom_logger\n",
     "\n",
-    "log = setup_custom_logger(__name__)\n",
+    "log = custom_logger(__name__)\n",
     "\n",
     "log.info(\"This is a test log message.\")"
    ]
