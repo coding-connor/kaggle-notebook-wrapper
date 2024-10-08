@@ -4,10 +4,12 @@ setup(
     name='kaggle-notebook-wrapper',
     version='0.1.0',
     packages=find_packages(),
-    install_requires=[],
+    install_requires=[
+        'kaggle',
+    ],
     entry_points={
         'console_scripts': [
-            'kaggle-notebook-wrapper=kaggle-notebook-wrapper.module:main',
+            'kaggle-wrapper=kaggle_notebook_wrapper.cli:main',
         ],
     },
 )

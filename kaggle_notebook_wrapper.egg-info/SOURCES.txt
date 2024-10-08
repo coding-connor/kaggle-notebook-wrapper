@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+setup.py
+kaggle-notebook-wrapper/__init__.py
+kaggle-notebook-wrapper/cli.py
+kaggle-notebook-wrapper/module.py
+kaggle_notebook_wrapper.egg-info/PKG-INFO
+kaggle_notebook_wrapper.egg-info/SOURCES.txt
+kaggle_notebook_wrapper.egg-info/dependency_links.txt
+kaggle_notebook_wrapper.egg-info/entry_points.txt
+kaggle_notebook_wrapper.egg-info/requires.txt
+kaggle_notebook_wrapper.egg-info/top_level.txt
+tests/test_module.py

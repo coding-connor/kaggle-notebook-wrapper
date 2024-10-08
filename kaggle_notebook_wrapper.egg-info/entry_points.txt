@@ -1,0 +1,2 @@
+[console_scripts]
+kagglew = cli:main
