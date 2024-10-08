@@ -17,7 +17,16 @@
    "metadata": {
     "cell_id": 1
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2024-10-08 02:56:41,568 [cell_id: 1] This is a test log message.\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "from kaggle_notebook_wrapper import custom_logger\n",
     "\n",
@@ -29,8 +38,19 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
-   "outputs": [],
+   "metadata": {
+    "cell_id": 2
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2024-10-08 02:56:41,583 [cell_id: 2] This is another test log message.\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "log.info(\"This is another test log message.\")"
    ]
@@ -38,8 +58,19 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "metadata": {},
-   "outputs": [],
+   "metadata": {
+    "cell_id": 3
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2024-10-08 02:56:41,598 [cell_id: 3] This is a third test log message.\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "log.info(\"This is a third test log message.\")"
    ]
