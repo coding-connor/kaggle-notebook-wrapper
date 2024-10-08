@@ -1,6 +1,6 @@
-[{"stream_name":"stdout","time":4.613203697,"data":"Hello, World!\n"}
-,{"stream_name":"stderr","time":6.816860345,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
-,{"stream_name":"stderr","time":7.268197868,"data":"[NbConvertApp] Writing 1545 bytes to __notebook__.ipynb\n"}
-,{"stream_name":"stderr","time":8.85767237,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
-,{"stream_name":"stderr","time":9.752572999,"data":"[NbConvertApp] Writing 272871 bytes to __results__.html\n"}
+[{"stream_name":"stdout","time":5.163349874,"data":"Hello, World!\n"}
+,{"stream_name":"stderr","time":7.656295931,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":8.18017222,"data":"[NbConvertApp] Writing 1583 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":9.986059195,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":11.057297688,"data":"[NbConvertApp] Writing 272871 bytes to __results__.html\n"}
 ]

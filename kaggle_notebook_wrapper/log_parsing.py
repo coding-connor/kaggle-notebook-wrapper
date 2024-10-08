@@ -75,7 +75,6 @@ def backup_notebook(notebook_path):
 
 def process_logs(notebook_path, log_file_path):
     """Process logs and append them to the notebook."""
-    backup_notebook(notebook_path)
     log_content = read_log_file(log_file_path)
     log_data = extract_log_entries(log_content)
     append_logs_to_cells(notebook_path, log_data)

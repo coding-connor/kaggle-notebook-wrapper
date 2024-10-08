@@ -4,7 +4,8 @@ import time
 import json
 import os
 import re
-from kaggle_notebook_wrapper.log_parsing import process_logs
+from kaggle_notebook_wrapper.log_parsing import backup_notebook, process_logs
+from kaggle_notebook_wrapper.notebook_metadata import add_cell_ids
 
 def push_notebook(path=None):
     """Push the notebook to Kaggle."""
@@ -59,12 +60,24 @@ def sync_notebook(path=None):
         kernel_id = metadata['id']
         notebook_file = metadata['code_file']
 
+    notebook_path = os.path.join(path, notebook_file) if path else notebook_file
+
+    # Step 1: Create a backup of the notebook
+    backup_notebook(notebook_path)
+
+    # Step 2: Add cell IDs to the notebook
+    try:
+        add_cell_ids(notebook_path)
+    except Exception as e:
+        print(f"An error occurred while adding cell IDs: {e}")
+        return
+
+    # Push the notebook to Kaggle
     push_notebook(path)
     log_file_path = pull_results(kernel_id)
 
     # Process logs after pulling results
     if log_file_path:
-        notebook_path = os.path.join(path, notebook_file) if path else notebook_file
         process_logs(notebook_path, log_file_path)
 
 def main():
