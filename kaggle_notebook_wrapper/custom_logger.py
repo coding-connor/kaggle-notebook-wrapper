@@ -14,8 +14,8 @@ class CustomAdapter(logging.LoggerAdapter):
         return '[cell_id: %s] %s' % (self.extra['cell_id'], msg), kwargs
 
 class CustomContext:
-    def __init__(self, metadata_path='kernel-metadata.json'):
-        self.notebook_path = self._get_notebook_path(metadata_path)
+    def __init__(self, notebook_path):
+        self.notebook_path = notebook_path
         self.cells = self._load_cells()
 
     def _get_notebook_path(self, metadata_path):
@@ -49,14 +49,14 @@ class CustomContext:
     def __iter__(self):
         return iter([])
 
-def custom_logger(name, metadata_path='kernel-metadata.json'):
+def custom_logger(name, notebook_path="__notebook__.ipynb"):
     logger = logging.getLogger(name)
     syslog = logging.StreamHandler()
     formatter = logging.Formatter('%(asctime)s %(message)s')
     syslog.setFormatter(formatter)
     if not any(isinstance(handler, logging.StreamHandler) for handler in logger.handlers):
         logger.addHandler(syslog)
-    context = CustomContext(metadata_path)
+    context = CustomContext(notebook_path)
     log = CustomAdapter(logger, context)
     log.setLevel(logging.INFO)
     return log
