@@ -1,3 +1,5 @@
+# I ran this script in the terminal to create the project structure and push it to GitHub. But I don't strictly track project structure changes, so this is just a reference for how I set up the project initially.
+
 #!/bin/bash
 
 # Define the package name and GitHub repository details

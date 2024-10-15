@@ -6,6 +6,9 @@ import builtins
 from nbformat.notebooknode import NotebookNode
 
 def read_log_file(log_file_path):
+    """
+    Reads the content of a log file and returns it.
+    """
     print(f"Reading log file: {log_file_path}")
     with open(log_file_path, 'r') as log_file:
         log_content = log_file.read()
